@@ -1,0 +1,38 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+}
+
+.dialogs_items {
+    padding: 10px;
+    margin: 10px;
+}
+
+.dialog {
+
+}
+
+.dialog .active {
+    color: gold;
+}
+
+.messages {
+    padding: 10px;
+    margin: 10px;
+}
+
+.message {
+
+}
+
+.textAria {
+    /*float: right;*/
+    padding: 10px;
+    height: 30px;
+    width: 300px;
+}
+
+.button {
+    height: 30px;
+    width: 300px;
+}
