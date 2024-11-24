@@ -12,7 +12,7 @@ const maxLength = maxLengthCreator(300);
 
 function MyPosts(props) {
   let postsElements = props.posts.map((p) => (
-    <Post message={p.message} likes={p.likes} />
+    <Post message={p.message} likes={p.likes} key={p.id} />
   ));
 
   const onSubmit = (formData) => {

@@ -3,6 +3,7 @@ import { profileAPI } from "../api/api";
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SET_PHOTO_PROFILE = "SET_PHOTO_PROFILE";
 
 let initialState = {
   posts: [
@@ -39,6 +40,15 @@ export function profileReducer(state = initialState, action) {
         ...state,
         status: action.status,
       };
+    case SET_PHOTO_PROFILE:
+      console.log("Updating profile photo:", action.photoFile);
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          photos: action.photoFile,
+        },
+      };
     default:
       return state;
   }
@@ -57,6 +67,10 @@ export function setUserProfile(profile) {
 
 export function setStatus(status) {
   return { type: SET_STATUS, status };
+}
+
+export function setPhotoProfile(photoFile) {
+  return { type: SET_PHOTO_PROFILE, photoFile };
 }
 
 export function userProfileThunkCreator(userId) {
@@ -82,5 +96,22 @@ export function updateStatusThunkCreator(status) {
         dispatch(setStatus(res.data));
       }
     });
+  };
+}
+
+export function savePhotoProfile(photoFile) {
+  return function (dispatch) {
+    console.log(photoFile);
+    profileAPI
+      .updatePhotoProfile(photoFile)
+      .then((res) => {
+        console.log("Response from server:", res);
+        if (res.data.resaultCode === 0) {
+          dispatch(setPhotoProfile(res.data.data.photos));
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
   };
 }

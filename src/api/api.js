@@ -32,6 +32,16 @@ export const profileAPI = {
       status,
     });
   },
+  updatePhotoProfile(photoFile) {
+    const formData = new FormData();
+    formData.append("image", photoFile);
+    console.log("updatePhotoProfileAPI" + photoFile);
+    return instance.put(`profile/photo`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  },
 };
 
 export const auth = {
