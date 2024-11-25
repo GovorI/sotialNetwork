@@ -41,7 +41,6 @@ export function profileReducer(state = initialState, action) {
         status: action.status,
       };
     case SET_PHOTO_PROFILE:
-      console.log("Updating profile photo:", action.photoFile);
       return {
         ...state,
         profile: {
@@ -70,6 +69,7 @@ export function setStatus(status) {
 }
 
 export function setPhotoProfile(photoFile) {
+  console.log('action: SET_PHOTO_PROFILE')
   return { type: SET_PHOTO_PROFILE, photoFile };
 }
 
@@ -92,7 +92,7 @@ export function getStatusThunkCreator(userId) {
 export function updateStatusThunkCreator(status) {
   return function (dispatch) {
     profileAPI.updateStatus(status).then((res) => {
-      if (res.data.resaultCode === 0) {
+      if (res.data.resultCode === 0) {
         dispatch(setStatus(res.data));
       }
     });
@@ -105,8 +105,7 @@ export function savePhotoProfile(photoFile) {
     profileAPI
       .updatePhotoProfile(photoFile)
       .then((res) => {
-        console.log("Response from server:", res);
-        if (res.data.resaultCode === 0) {
+        if (res.data.data.photos) {
           dispatch(setPhotoProfile(res.data.data.photos));
         }
       })
