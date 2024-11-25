@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/sotialNetwork/static/css/main.ab3f782c.css",
-    "main.js": "/sotialNetwork/static/js/main.3eed88f3.js",
+    "main.css": "/sotialNetwork/static/css/main.4744e74e.css",
+    "main.js": "/sotialNetwork/static/js/main.4e879766.js",
     "static/media/young-man-avatar-on-round-button_icon-icons.com_68262.png": "/sotialNetwork/static/media/young-man-avatar-on-round-button_icon-icons.com_68262.0ac82c3e340c16133fc6.png",
     "index.html": "/sotialNetwork/index.html",
-    "main.ab3f782c.css.map": "/sotialNetwork/static/css/main.ab3f782c.css.map",
-    "main.3eed88f3.js.map": "/sotialNetwork/static/js/main.3eed88f3.js.map"
+    "main.4744e74e.css.map": "/sotialNetwork/static/css/main.4744e74e.css.map",
+    "main.4e879766.js.map": "/sotialNetwork/static/js/main.4e879766.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab3f782c.css",
-    "static/js/main.3eed88f3.js"
+    "static/css/main.4744e74e.css",
+    "static/js/main.4e879766.js"
   ]
 }
