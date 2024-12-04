@@ -31,6 +31,10 @@ function ProfileInfo(props) {
   //   }
   // };
 
+  function onSubmit(formData) {
+    // props.saveProfile(formData)
+  }
+
   return (
     <div>
       <div>
@@ -48,7 +52,9 @@ function ProfileInfo(props) {
       </div>
       <ProfileStatus {...props} /> <br />
       {edit
-        ? <ProfileDataForm profile={props.profile} setEdit={()=>{setEdit(true)}}/>
+        ? <ProfileDataForm profile={props.profile} setEdit={()=>{setEdit(true)}} 
+                          initialValues={props.profile} onSubmit={onSubmit}
+                          saveProfile={props.saveProfile}/>
         : <ProfileData profile={props.profile} isOwner={props.isOwner} setEdit={()=>{editProfile()}}/>
       }
     </div>

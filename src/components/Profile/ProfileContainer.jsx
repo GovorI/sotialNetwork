@@ -6,6 +6,7 @@ import {
   updateStatusThunkCreator,
   userProfileThunkCreator,
   savePhotoProfile,
+  // saveProfile
 } from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
@@ -19,6 +20,7 @@ function ProfileContainer({
   isAuth,
   authorizedUserId,
   savePhotoProfile,
+  // saveProfile
 }) {
   const { userId } = useParams();
   const id = userId ? userId : authorizedUserId;
@@ -36,6 +38,7 @@ function ProfileContainer({
         status={status}
         updateStatusThunkCreator={updateStatusThunkCreator}
         savePhotoProfile={savePhotoProfile}
+        // saveProfile={saveProfile}
       />
     </div>
   );
@@ -57,5 +60,6 @@ export default compose(
     getStatusThunkCreator,
     updateStatusThunkCreator,
     savePhotoProfile,
+    // saveProfile
   })
 )(ProfileContainer);
