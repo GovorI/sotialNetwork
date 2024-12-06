@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
@@ -69,7 +70,7 @@ export function setStatus(status) {
 }
 
 export function setPhotoProfile(photoFile) {
-  console.log('action: SET_PHOTO_PROFILE')
+  console.log("action: SET_PHOTO_PROFILE");
   return { type: SET_PHOTO_PROFILE, photoFile };
 }
 
@@ -112,5 +113,20 @@ export function savePhotoProfile(photoFile) {
       .catch((error) => {
         console.error("Error uploading photo:", error);
       });
+  };
+}
+
+export function saveProfile(profile) {
+  return async function (dispatch, getState) {
+    const userId = getState().auth.userId;
+    const res = await profileAPI.saveProfile(profile);
+    if (res.data.resultCode === 0) {
+      console.log(res);
+      dispatch(userProfileThunkCreator(userId));
+    } else {
+      console.log(res);
+      dispatch(stopSubmit("edit-profile", { _error: res.data.messages[0] }));
+      return Promise.reject(res.data.messages[0]);
+    }
   };
 }

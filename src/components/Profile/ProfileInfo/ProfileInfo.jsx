@@ -3,9 +3,8 @@ import s from "../ProfileInfo/ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloader";
 import defaultUserAvatar from "../../../assets/images/young-man-avatar-on-round-button_icon-icons.com_68262.png";
 import ProfileStatus from "./ProfileStatus";
-import ProfileData from "./ProfileData"
+import ProfileData from "./ProfileData";
 import ProfileDataForm from "./ProfileDataForm";
-
 
 function ProfileInfo(props) {
   const [edit, setEdit] = useState(false);
@@ -13,7 +12,6 @@ function ProfileInfo(props) {
   if (!props.profile) {
     return <Preloader />;
   }
-  console.log(props.profile);
   // function editPhoto() {
   //   setEdit(true);
   // }
@@ -31,8 +29,15 @@ function ProfileInfo(props) {
   //   }
   // };
 
-  function onSubmit(formData) {
-    // props.saveProfile(formData)
+  async function onSubmit(formData) {
+    props
+      .saveProfile(formData)
+      .then(() => {
+        setEdit(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
@@ -51,16 +56,27 @@ function ProfileInfo(props) {
         </div> */}
       </div>
       <ProfileStatus {...props} /> <br />
-      {edit
-        ? <ProfileDataForm profile={props.profile} setEdit={()=>{setEdit(true)}} 
-                          initialValues={props.profile} onSubmit={onSubmit}
-                          saveProfile={props.saveProfile}/>
-        : <ProfileData profile={props.profile} isOwner={props.isOwner} setEdit={()=>{editProfile()}}/>
-      }
+      {edit ? (
+        <ProfileDataForm
+          profile={props.profile}
+          setEdit={() => {
+            setEdit(true);
+          }}
+          initialValues={props.profile}
+          onSubmit={onSubmit}
+          saveProfile={props.saveProfile}
+        />
+      ) : (
+        <ProfileData
+          profile={props.profile}
+          isOwner={props.isOwner}
+          setEdit={() => {
+            editProfile();
+          }}
+        />
+      )}
     </div>
   );
 }
-
-
 
 export default ProfileInfo;

@@ -42,15 +42,10 @@ export const profileAPI = {
       },
     });
   },
-  saveProfile(profile){
-    const formData = new FormData()
-    formData.append('profile', profile)
-    return instance.put('profile', formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
-  }
+  saveProfile(profile) {
+    console.log("apiSaveProfile");
+    return instance.put(`profile`, profile);
+  },
 };
 
 export const auth = {
