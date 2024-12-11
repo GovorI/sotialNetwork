@@ -15,6 +15,7 @@ import { compose } from "redux";
 function ProfileContainer({
   userProfileThunkCreator,
   getStatusThunkCreator,
+  updateStatusThunkCreator,
   profile,
   status,
   isAuth,

@@ -10,10 +10,10 @@ const maxLength100 = maxLengthCreator(100);
 
 function Dialogs(props) {
   let dialogsElement = props.dialogsPage.dialogsData.map((dialog) => (
-    <DialogItem name={dialog.name} id={dialog.id} />
+    <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />
   ));
   let messagesElement = props.dialogsPage.messagesData.map((message) => (
-    <Message message={message.message} />
+    <Message message={message.message} key={message.id}/>
   ));
 
   const onSubmit = (formData) => {

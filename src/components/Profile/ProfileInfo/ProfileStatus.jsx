@@ -3,20 +3,20 @@ import React from "react";
 class ProfileStatus extends React.Component {
   state = {
     editMode: false,
-    status: this.props.status,
+    status: this.props.status || "----",
   };
-  activateEditMode() {
+  activateEditMode = () => {
     this.setState({
       editMode: true,
     });
   }
-  deactivateEditMode() {
+  deactivateEditMode = () => {
     this.setState({
       editMode: false,
     });
     this.props.updateStatusThunkCreator(this.state.status);
   }
-  onStatusChange(e) {
+  onStatusChange = (e) => {
     this.setState({
       status: e.currentTarget.value,
     });
@@ -25,7 +25,7 @@ class ProfileStatus extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.status !== this.props.status) {
       this.setState({
-        status: this.props.status,
+        status: this.props.status || "----",
       });
     }
   }
@@ -37,7 +37,7 @@ class ProfileStatus extends React.Component {
           <div>
             <b>Status: </b>
             <span onDoubleClick={this.activateEditMode.bind(this)}>
-              {this.state.status || "-----------"}
+              {this.state.status}
             </span>
           </div>
         )}

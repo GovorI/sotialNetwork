@@ -28,6 +28,7 @@ export const profileAPI = {
     return instance.get(`profile/status/${id}`);
   },
   updateStatus(status) {
+    console.log('status',status)
     return instance.put(`profile/status`, {
       status,
     });

@@ -94,7 +94,7 @@ export function updateStatusThunkCreator(status) {
   return function (dispatch) {
     profileAPI.updateStatus(status).then((res) => {
       if (res.data.resultCode === 0) {
-        dispatch(setStatus(res.data));
+        dispatch(setStatus(status));
       }
     });
   };
