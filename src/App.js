@@ -16,8 +16,17 @@ import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
 
 class App extends Component {
+ catchAllUnhandledErrors = (reason, promise)=>{
+  alert(reason)
+}
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
   }
 
   render() {
